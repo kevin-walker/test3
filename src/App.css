@@ -1,0 +1,102 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.nav-tabs {
+	border-bottom: 2px solid #ff0080;
+	
+	outline:none;
+
+	border:none;
+	
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+	{
+	border-width: 0;
+
+border:none;
+}
+
+.nav-tabs>li>a {
+	border: none;
+	color: #0080c0;
+
+}
+
+.nav-tabs>li.active>a {
+	border: none;
+	color: #ff0080!important;
+	background: transparent;
+
+}
+
+.nav-tabs>li>a::after {
+	content: "";
+	background: #ff0080;
+	height: 2px;
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	bottom: -1px;
+	transition: all 250ms ease 0s;
+	transform: scale(0);
+	outline:none;
+}
+
+.nav-tabs>li.active>a::after/*, .nav-tabs>li:hover>a::after */{
+	transform: scale(1);
+	
+	
+}
+
+.tab-nav>li>a::after {
+	background: #ff0080 none repeat scroll 0% 0%;
+	color: #fff;
+	
+}
+
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+	color: #0000ff;
+	background-color: #fff;
+	border-color: transparent;
+}
+
+.txtcolor{
+    color: #ff0080;
+}
+.ratingcolor{
+    color: #ff8040;
+}
+.panelpos{
+    position: relative; 
+    top: 180px;
+	width:50%;
+}
+
+.errorcolor{
+	color: red;
+}

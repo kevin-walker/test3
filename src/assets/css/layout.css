@@ -1,0 +1,170 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color:black;
+  }
+  .table-hover > tbody > tr:hover{
+    background-color: lightblue;
+  }
+ 
+  .filter-btn.btn-primary:active:focus{
+    background-color: lightseagreen !important;
+  }
+  
+  .navbar{
+    margin-bottom: 0
+  }
+
+  .btn-link{
+    color: #ff0080
+  }
+
+  .tabpos{
+    width: 50%;
+    text-align: center;
+    color:#337AB7; 
+    border-bottom: none;
+  }
+
+  .tabposSelected {
+   
+    color: #ff0080;     
+    border-bottom: 2px solid #ff0080;
+  }
+  .facolor{
+    color :  #ff0080
+  }
+  .bgcolor-tab{
+    background-color: white;
+  }
+
+  .noborder{
+    border: 0
+  }
+
+  thead {
+    color: rgb(33, 75, 112);
+  }
+  .display{
+    display:"";
+  }
+  .row{
+      margin-top:40px;
+      padding: 0 10px;
+  }
+
+.valid-border{
+  border-left: 5px solid #42A948;
+}
+ 
+.btn-link:hover{
+  color:'blue'
+}
+
+.borderless td, .borderless th {
+  border: none;
+}
+  /* -------------------------nav tabs--------------------- */
+  .nav-tabs {
+    border-bottom: 2px solid #ff0080;
+    
+    outline:none;
+  
+    border:none;
+    
+  }
+  
+  .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+    {
+    border-width: 0;
+  color: green;
+  border:none;
+  }
+  
+  
+  
+ 
+  .nav-tabs>li>a::after {
+    content: "";
+    background: #ff0080;
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: -1px;
+    transition: all 250ms ease 0s;
+    transform: scale(0);
+    outline:none;
+  }
+  
+  .nav-tabs>li.active>a::after/*, .nav-tabs>li:hover>a::after */{
+    transform: scale(1);
+    
+    
+  }
+  
+  .tab-nav>li>a::after {
+    background: #ff0080 none repeat scroll 0% 0%;
+    color: #fff;
+    
+  }
+  
+  .with-nav-tabs.panel-primary .nav-tabs > .open > a,
+  .with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+  .with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+  .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+  .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #0000ff;
+    background-color: #fff;
+    border-color: transparent;
+  }
+  
+  .txtcolor{
+      color: #ff0080;
+  }
+  .ratingcolor{
+      color: #ff8040;
+  }
+  .panelpos{
+      position: relative; 
+      top: 100px;
+    width:50%;
+  }
+  
+  .errorcolor{
+    color: red;
+  }
+
+  
+
+.tablebgcolor{
+  background-color: white;
+}
+
+.txtsize{
+  font-size: 20px;
+}
+
+.hrcolor{
+  background-color: #ff0080;
+}
+
+.backbtnpos{
+  width: 80px;
+}
+
+
+/* Check BOXES Filter */

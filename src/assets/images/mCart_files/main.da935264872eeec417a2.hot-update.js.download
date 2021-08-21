@@ -1,0 +1,636 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/Components/ProductLists.js":
+/*!****************************************!*\
+  !*** ./src/Components/ProductLists.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _Rating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Rating */ "./src/Components/Rating.js");
+/* harmony import */ var _assets_css_layout_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/css/layout.css */ "./src/assets/css/layout.css");
+/* harmony import */ var _assets_css_layout_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_css_layout_css__WEBPACK_IMPORTED_MODULE_3__);
+var _jsxFileName = "D:\\mCart\\mcart_react\\src\\Components\\ProductLists.js";
+
+
+
+
+
+let baseUrl = window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/"));
+
+class ProductLists extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    this.tabSelect = selected => {
+      if (selected === "Tablets") {
+        this.classTab1 = "tabpos tabposSelected";
+        this.classTab2 = "tabpos";
+      } else {
+        this.classTab1 = "tabpos";
+        this.classTab2 = "tabpos tabposSelected";
+      }
+
+      this.props.getAllProducts(selected);
+    };
+
+    this.showProductDetail = id => {
+      this.props.history.push(baseUrl + "/productsDetail/" + id);
+    };
+
+    this.addToCart = itemId => {
+      this.selecteditemsArray = this.props.itemsArray;
+      this.props.allProducts.forEach(element => {
+        if (element.productId === parseInt(itemId)) {
+          this.product = element;
+        }
+      });
+      this.itemsConut += 1; // checking whether already existing
+
+      let Pexistance = this.props.itemsArray.filter(items => {
+        return items.productId === itemId;
+      })[0]; // if already existing find index
+
+      if (Pexistance !== undefined) {
+        let index = this.props.itemsArray.findIndex(currProduct => {
+          return currProduct.productId === itemId;
+        });
+        this.selecteditemsArray[index].quantity += 1;
+        this.selecteditemsArray[index].priceOnQuantity = this.selecteditemsArray[index].price * this.selecteditemsArray[index].quantity;
+        this.totalAmount += this.selecteditemsArray[index].price;
+      } else {
+        this.product.quantity = 1;
+        this.product.priceOnQuantity = this.product.quantity * this.product.price;
+        this.totalAmount += this.product.price;
+        this.selecteditemsArray.push(this.product);
+      }
+
+      this.props.addToCart(this.itemsConut, this.selecteditemsArray, this.totalAmount);
+    };
+
+    this.showCart = () => {
+      this.props.history.push(baseUrl + "/cartItems");
+    };
+
+    this.searchtextSave = e => {
+      this.setState({
+        searchtext: e.target.value
+      });
+    };
+
+    this.searchtext = () => {
+      console.log(this.state.searchtext);
+      let products = JSON.parse(localStorage.getItem("shownProducts"));
+      console.log(products);
+
+      if (products.length > 0) {
+        let serchedProducts = products.filter(product => product.manufacturer.toLowerCase().indexOf(this.state.searchtext) !== -1);
+        console.log("Searched ", serchedProducts);
+        this.props.updateView(serchedProducts);
+      }
+    };
+
+    this.sortOption = e => {
+      let sortoption = e.target.value;
+      this.props.sortItems(sortoption);
+    };
+
+    if (this.props.cameBackFrom === "CheckedOut") {
+      this.props.updateCart();
+    }
+
+    this.itemsConut = Number(localStorage.getItem("itemsCount"));
+    this.selecteditemsArray = JSON.parse(localStorage.getItem("addedProducts"));
+    this.totalAmount = Number(localStorage.getItem("totalAmount"));
+    this.classTab1 = "tabpos tabposSelected";
+    this.classTab2 = "tabpos";
+    this.state = {
+      manufacturers: [{
+        id: "Samsung",
+        checked: false
+      }, {
+        id: "Microsoft",
+        checked: false
+      }, {
+        id: "Apple",
+        checked: false
+      }, {
+        id: "Micromax",
+        checked: false
+      }],
+      os: [{
+        id: "Android",
+        checked: false
+      }, {
+        id: "Windows",
+        checked: false
+      }, {
+        id: "iOS",
+        checked: false
+      }],
+      price_range: [{
+        id: "3000-5000",
+        checked: false
+      }, {
+        id: "13000-15000",
+        checked: false
+      }, {
+        id: "19000-35000",
+        checked: false
+      }, {
+        id: "40000-70000",
+        checked: false
+      }],
+      searchtext: ''
+    };
+  }
+
+  componentDidMount() {
+    this.props.getAllProducts("Tablets");
+    document.getElementById("login").style.display = "";
+    document.getElementById("login").innerHTML = "Logout";
+    sessionStorage.setItem("loginTitle", "Logout");
+    document.getElementById("welcome").style.display = "";
+    document.getElementById("welcome").style.color = "#ff0080";
+    document.getElementById("welcome").innerHTML = "Welcome " + localStorage.getItem("currentUser").substr(0, 1).toUpperCase() + localStorage.getItem("currentUser").substr(1);
+  }
+
+  render() {
+    const imageclass = {
+      display: "block",
+      marginLeft: "auto",
+      marginRight: "auto",
+      width: "70px",
+      height: "110px"
+    };
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 156
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        padding: "0px 30px 0px 0px"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 157
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
+      fixed: "top",
+      style: {
+        marginBottom: 0
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 158
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+      className: "mr-auto",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 159
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+      style: {
+        fontSize: "0.5cm",
+        color: "grey"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 160
+      },
+      __self: this
+    }, "mCart\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+      style: {
+        color: "#ff0080",
+        padding: "0 20px 0 0"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 164
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "glyphicon glyphicon-shopping-cart",
+      style: {
+        fontSize: "24px"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 165
+      },
+      __self: this
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 171
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+      style: {
+        color: "#ff0080",
+        padding: "0 0px 0 0",
+        width: "70%"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 172
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "glyphicon glyphicon-shopping-cart",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 175
+      },
+      __self: this
+    }), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "true",
+      className: "txtcolor",
+      id: "cartItemsCount",
+      onClick: this.showCart,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 177
+      },
+      __self: this
+    }, this.itemsConut, " items"), "\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      id: "totalAmount",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 186
+      },
+      __self: this
+    }, "\u20B9", this.totalAmount, ".00 ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      className: "form-control",
+      placeholder: "Search",
+      name: "q",
+      onChange: this.searchtextSave,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 189
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "input-group-btn",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 196
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "btn btn-default",
+      onClick: this.searchtext,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 197
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "glyphicon glyphicon-search",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 198
+      },
+      __self: this
+    })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      style: {
+        marginTop: "0",
+        marginBottom: "6px"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 204
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Carousel"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 206
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Carousel"].Item, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 207
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "d-block w-100",
+      src: "db/imgs/carousel_smart_phone.jpg",
+      alt: "First slide",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 208
+      },
+      __self: this
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Carousel"].Item, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 214
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "d-block w-100",
+      src: "db/imgs/carousel1.jpg",
+      alt: "Third slide",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 215
+      },
+      __self: this
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Carousel"].Item, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 221
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "d-block w-100",
+      src: "db/imgs/tablet_blue_stylus.jpg",
+      alt: "Third slide",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 222
+      },
+      __self: this
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "panel with-nav-tabs noborder",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 230
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "panel-heading noborder bgcolor-tab",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 231
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      className: "nav nav-tabs noborder",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 232
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: this.classTab1,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 233
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      "data-toggle": "tab",
+      onClick: () => this.tabSelect("Tablets"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 234
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fa fa-tablet  fa-3x",
+      "aria-hidden": "true",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 239
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 240
+      },
+      __self: this
+    }, "Tablets"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: this.classTab2,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 243
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      "data-toggle": "tab",
+      onClick: () => this.tabSelect("Mobiles"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 244
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fa fa-mobile  fa-3x",
+      "aria-hidden": "true",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 249
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 250
+      },
+      __self: this
+    }, "Mobiles"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "panel-body",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 255
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        padding: "0 0 100px 0"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 256
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "pull-right",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 282
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 283
+      },
+      __self: this
+    }, "Sort By "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      defaultValue: "",
+      onChange: this.sortOption,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 284
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: "",
+      disabled: true,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 285
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: "popularity",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 286
+      },
+      __self: this
+    }, "Popularity"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: "pricelh",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 287
+      },
+      __self: this
+    }, "Price - Low to High"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: "pricehl",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 288
+      },
+      __self: this
+    }, "Price - High to Low")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "tab-content",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 293
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "tab-pane fade in active",
+      id: "tabprimary",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 294
+      },
+      __self: this
+    }, this.props.allProducts.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 296
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["CardGroup"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 297
+      },
+      __self: this
+    }, this.props.allProducts.map(product => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+      xs: 3,
+      key: product.productId,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 299
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+      className: "text-center",
+      style: {
+        borderColor: "#ededed"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 300
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Img, {
+      variant: "top",
+      src: product.imageUrl,
+      style: imageclass,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 304
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Body, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 309
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Title, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 310
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      variant: "link",
+      onClick: () => this.showProductDetail(product.productId),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 311
+      },
+      __self: this
+    }, product.productName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Text, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 320
+      },
+      __self: this
+    }, "\u20B9", product.price, ".00"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Rating__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      rate: product.rating,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 322
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 323
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      variant: "primary",
+      onClick: () => this.addToCart(product.productId),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 324
+      },
+      __self: this
+    }, "Add to Cart"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 334
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 335
+      },
+      __self: this
+    }))))) : null)))));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ProductLists);
+
+/***/ })
+
+})
+//# sourceMappingURL=main.da935264872eeec417a2.hot-update.js.map

@@ -1,0 +1,50 @@
+.shadow {
+    text-shadow: 3px 3px 2px rgba(150, 150, 150, 1);
+    
+}
+
+.logo-styles{
+	width: 50px; 
+	font-size: 50px; 
+	color: #ff0080
+}
+
+.title-styles{
+	text-align: center; 
+	color: #ff0080; 
+    font-size: 40px;
+    text-shadow: 3px 3px 2px rgba(150, 150, 150, 1);
+}
+
+.text-styles{
+    text-align: center; 
+	color:#337ab7;
+    font-size: 15px;
+    padding: 2% 0% 2% 30%;
+  
+}
+
+.container-styles{
+   
+	position: relative; 
+    top: 100px;
+    left: 330px;
+    width:50%;
+    
+}
+
+.container-styles-Login{
+    position: relative; 
+    top: 100px;
+    left: 500px;
+    width:30%;
+}
+
+.card{
+    border-color: #1b71bd
+}
+.cardHead{
+    background-color: #1b71bd;
+    color : white
+
+}
